@@ -1,0 +1,72 @@
+#include<iostream>
+#include<cmath>
+#define ROW 2
+#define COL 4
+using namespace std;
+int main () {
+	int xa,xc,xm,xp,ya,yc,ym,yp,X,Y;
+	int a,b,S1,S2,S;
+	
+//Nhap toa do cac diem
+	cout <<"Nhap toa do x, y cua diem A: ";
+	cin >> xa>>ya;
+	cout <<"Nhap toa do x, y cua diem C: ";
+	cin >> xc>>yc;
+	cout <<"Nhap toa do x, y cua diem M: ";
+	cin >> xm>>ym;
+	cout <<"Nhap toa do x, y cua diem P: ";
+	cin >> xp>>yp;
+//Tim kich thuoc hinh chu nhat luon
+	int A[ROW][COL]= { {xa,xc,xm,xp},{ya,yc,ym,yp}}; 
+	int MaxX, MaxY,MinX,MinY;
+//a.Tim toa do lon nhat x y
+	MaxX = A[0][0];
+	for (int i = 0; i<1; i++) 
+		for(int j = 0; j<COL; j++)
+	{
+		if (A[i][j] > MaxX)
+				MaxX = A[i][j];
+	} 
+	MaxY=A[1][0];
+	for (int i = 1; i<2; i++) 
+		for(int j = 0; j<COL; j++)
+	{
+		if (A[i][j] > MaxY)
+				MaxY = A[i][j];
+	} 
+	MinX=A[0][0];
+		for (int i = 0; i<1; i++) 
+		for(int j = 0; j<COL; j++)
+	{
+		if (A[i][j] < MinX)
+				MinX = A[i][j];
+	} 
+	MinY=A[1][0];
+	for (int i =1; i<2; i++) 
+		for(int j = 0; j<COL; j++)
+	{
+		if (A[i][j] < MinY)
+				MinY = A[i][j];
+	}
+//b.Tim do dai kich thuoc hcn lon
+	X=abs(MaxX-MinX);
+	Y=abs(MaxY-MinY);
+//Xet case va tinh toan
+	a=abs(xa-xc)*abs(xm-xp)-X;
+	b=abs(ya-yc)*abs(ym-yc)-Y;
+	S1=abs(xa-xc)*abs(ya-yc);
+	S2=abs(xm-xp)*abs(ym-yc);
+	if ((a<0) || (a==0)) {
+		S=S1+S2;
+		cout << "Dien tich can tinh la: "<<S<<endl;
+	} else if ((a>0) && (b>0)) {
+		S=S1+S2 - a*b;
+		cout << "Dien tich can tinh la: "<<S<<endl;
+	} else if ((a>0) && (b==0)) { 
+		S=S1+S2 - a*b;
+		cout << "Dien tich can tinh la: "<<S<<endl;
+	} else if ((a>0) && (b<0)) {
+		S=S1+S2;
+		cout << "Dien tich can tinh la: "<<S<<endl;
+	}
+}
